@@ -1,3 +1,4 @@
+import os
 import socket
 from pathlib import Path
 from enum import Enum
@@ -114,6 +115,7 @@ class FTPServerHandler:
             self.send_text(file_manager.pwd())
             request = self.recv_text()
             if not request:
+                os.chdir(self._server.location)
                 break
             response = self.process_request(file_manager, request, username)
             if response:

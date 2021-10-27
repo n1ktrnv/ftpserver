@@ -22,9 +22,10 @@ class Logger(ABC):
 class TXTLogger(Logger):
 
     def __init__(self, filename):
-        self._filename = Path(filename).resolve()
+        self._filename = Path(filename)
         if filename is not None and not os.path.isfile(filename):
             self.clear()
+        self._filename = Path(filename).resolve()
 
     @property
     def filename(self):
